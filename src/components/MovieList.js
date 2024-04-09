@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Movie from './Movie';
-
+import Menubar from './MenuBar';
 const MovieList = () => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -33,7 +33,8 @@ const MovieList = () => {
     };
 
     return (
-        <div className='w-full max-w-6xl mx-auto mt-10'>
+        <div className='w-full max-w-6xl mx-auto'>
+            <Menubar/>
             <h2 className='text-center text-3xl my-4'>Movies</h2>
             {loading ? (
                 <div className="flex justify-center items-center h-screen">
@@ -42,7 +43,7 @@ const MovieList = () => {
                 </div>
             </div>
             ) : (
-                <div className='grid grid-cols-1 sm:grid-cols-2'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 mt-10'>
                     {movies.map(movie => (
                         <div key={movie._id} className='my-4 bg-white border-y mx-4 shadow-md rounded-md'>
                             <Movie movie={movie} />

@@ -22,8 +22,8 @@ const Movie = ({ movie }) => {
 
                 {/* Image */}
                 <div className="flex-grow h-40 max-w-50 p-1 mx-1">
-    <img src={movie.poster} alt={movie.title} className="rounded-md w-full h-full object-cover mt-2" />
-</div>
+                    <img src={movie.poster} alt={movie.title} className="rounded-md w-full h-full object-cover mt-2" />
+                </div>
 
                 {/* Title and other details */}
                 <div className="ml-2 w-40 max-h-40">
@@ -41,11 +41,11 @@ const Movie = ({ movie }) => {
                         </span>
                     </p>
                     <p className='text-sm text-gray-500 truncate'>
-    Starring:&nbsp;
-    <span className='text-gray-700'>
-        {movie.stars}
-    </span>
-</p>
+                        Starring:&nbsp;
+                        <span className='text-gray-700'>
+                            {movie.stars}
+                        </span>
+                    </p>
                     <p className='text-sm'>
                         <span className='text-gray-700'>
                             Mins |&nbsp;
@@ -54,12 +54,12 @@ const Movie = ({ movie }) => {
                             {movie.language} |&nbsp;
                         </span>
                         <span className='text-gray-700'>
-                           2 Apr
+                            2 Apr
                         </span>
                     </p>
                     <p className='text-sm'>
                         <span className='text-blue-400'>
-                           {movie.pageViews} views |&nbsp; 
+                            {movie.pageViews} views |&nbsp;
                         </span>
                         <span className='text-gray-700'>
                             Voted by {movie.totalVoted}

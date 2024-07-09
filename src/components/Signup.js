@@ -132,7 +132,7 @@ const Signup = ({onLogin}) => {
                                         name="category"
                                         value={loginData.category}
                                         onChange={handleChange}
-                                        className="mt-1 block w-full rounded-md p-1"
+                                        className="mt-1 block w-full rounded-md p-1 border-2"
                                         required
                                     >
                                         <option value="">Select Category</option>

@@ -15,15 +15,18 @@ const Results = ({ handleLogout }) => {
     const correctPercentage = (correct / totalQuestions) * 100;
     const skippedPercentage = (skipped / totalQuestions) * 100;
     const wrongPercentage = (wrong / totalQuestions) * 100;
-    const score = (correct / totalQuestions) * 100;
+    const score = (correct / totalQuestions) * 100  ;
     const timeTaken = 300 - timeLeft;
     const minutes = Math.floor(timeTaken / 60);
     const seconds = timeTaken % 60;
-
+    // const correct = isNaN(scoreData.correct) ? 0 : scoreData.correct;
+    // const totalQuestions = isNaN(scoreData.totalQuestions) ? 0 : scoreData.totalQuestions;
     const scoreDataFromStorage = JSON.parse(localStorage.getItem('scoreData')) || {};
+    console.log(scoreDataFromStorage);
 
     const [scoreData, setScoreData] = useState({
-        score: scoreDataFromStorage.score || score,
+         score: (scoreDataFromStorage.score==null) ? score:scoreDataFromStorage.score,
+        // score: scoreDataFromStorage.score !== null ? scoreDataFromStorage.score : score,
         timeTaken: scoreDataFromStorage.timeTaken || timeTaken,
         correct: scoreDataFromStorage.correct || correct,
         skipped: scoreDataFromStorage.skipped || skipped,
@@ -33,6 +36,8 @@ const Results = ({ handleLogout }) => {
         minutes: scoreDataFromStorage.minutes || minutes,
         seconds: scoreDataFromStorage.seconds || seconds,
     });
+    console.log(scoreData);
+    
 
 
     useEffect(() => {

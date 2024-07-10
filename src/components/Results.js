@@ -15,18 +15,16 @@ const Results = ({ handleLogout }) => {
     const correctPercentage = (correct / totalQuestions) * 100;
     const skippedPercentage = (skipped / totalQuestions) * 100;
     const wrongPercentage = (wrong / totalQuestions) * 100;
-    const score = (correct / totalQuestions) * 100  ;
+    const score = (correct / totalQuestions) * 100;
     const timeTaken = 300 - timeLeft;
     const minutes = Math.floor(timeTaken / 60);
     const seconds = timeTaken % 60;
-    // const correct = isNaN(scoreData.correct) ? 0 : scoreData.correct;
-    // const totalQuestions = isNaN(scoreData.totalQuestions) ? 0 : scoreData.totalQuestions;
+
     const scoreDataFromStorage = JSON.parse(localStorage.getItem('scoreData')) || {};
     console.log(scoreDataFromStorage);
 
     const [scoreData, setScoreData] = useState({
-         score: (scoreDataFromStorage.score==null) ? score:scoreDataFromStorage.score,
-        // score: scoreDataFromStorage.score !== null ? scoreDataFromStorage.score : score,
+        score: (scoreDataFromStorage.score == null) ? score : scoreDataFromStorage.score,
         timeTaken: scoreDataFromStorage.timeTaken || timeTaken,
         correct: scoreDataFromStorage.correct || correct,
         skipped: scoreDataFromStorage.skipped || skipped,
@@ -37,7 +35,7 @@ const Results = ({ handleLogout }) => {
         seconds: scoreDataFromStorage.seconds || seconds,
     });
     console.log(scoreData);
-    
+
 
 
     useEffect(() => {
@@ -131,8 +129,8 @@ const Results = ({ handleLogout }) => {
                     Exit
                 </button>
             </div>
-            <footer className="bg-gray-200 text-dark p-4 mt-auto">
-                <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <footer className="bg-gray-200 text-dark p-1 mt-auto">
+                <div className="container p-4 mx-auto flex flex-col md:flex-row justify-between items-center">
                     <div className="logo my-2">
                         <img src={logo} alt="Logo" className="h-8 md:h-10" />
                     </div>
@@ -142,9 +140,10 @@ const Results = ({ handleLogout }) => {
                         <FaInstagram className="text-2xl text-gray-600" />
                         <FaYoutube className="text-2xl text-gray-600" />
                     </div>
-                    <div className="text-xs my-2">
-                        <p>&copy; 2024 Online Test Application. All rights reserved.</p>
-                    </div>
+
+                </div>
+                <div className="text-xs mt-auto text-center">
+                    <p>&copy; 2024 Online Test Application. All rights reserved.</p>
                 </div>
             </footer>
         </div>

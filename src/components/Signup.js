@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import loginImage from '../images/login.png';
 import signupImage from '../images/sign-up.png';
 
-const Signup = ({onLogin}) => {
+const Signup = ({ onLogin }) => {
     const [formData, setFormData] = useState({
         name: '',
         password: '',
@@ -20,6 +20,19 @@ const Signup = ({onLogin}) => {
     const [isLogin, setIsLogin] = useState(true);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const defaultUser = {
+            name: 'testuser@gmail.com',
+            password: 'testuser@2021',
+            category: ''
+        };
+        const userData = JSON.parse(localStorage.getItem('userData')) || [];
+        if (!userData.some(user => user.name === defaultUser.name)) {
+            userData.push(defaultUser);
+            localStorage.setItem('userData', JSON.stringify(userData));
+        }
+    }, []);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (isLogin) {
@@ -31,22 +44,22 @@ const Signup = ({onLogin}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const userData = JSON.parse(localStorage.getItem('userData')) || [];
         if (isLogin) {
-            const userData = JSON.parse(localStorage.getItem('userData'));
-            if (userData && userData.name === loginData.name && userData.password === loginData.password) {
-                // localStorage.setItem('login', true);
-                // localStorage.setItem('category',loginData.category);
+            const user = userData.find(user => user.name === loginData.name && user.password === loginData.password);
+            if (user) {
                 onLogin(loginData.category);
                 navigate("/test");
             } else {
-                setError('No user found ! Sign-up instead');
+                setError('No user found! Sign-up instead');
             }
         } else {
             if (formData.password !== formData.confirmPassword) {
                 setError('Passwords do not match');
                 return;
             }
-            localStorage.setItem('userData', JSON.stringify(formData));
+            userData.push(formData);
+            localStorage.setItem('userData', JSON.stringify(userData));
             setIsLogin(true);
             setError('');
         }
@@ -67,14 +80,14 @@ const Signup = ({onLogin}) => {
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <h2 className="text-3xl font-bold mb-4 text-center">{isLogin ? 'Login' : 'Sign up'}</h2>
                         <div className="mb-4">
-                            <label htmlFor="name" className="block text-gray-700">Your Name</label>
+                            <label htmlFor="name" className="block text-gray-700">Your Email</label>
                             <input
-                                type="text"
+                                type="email"
                                 id="name"
                                 name="name"
                                 value={isLogin ? loginData.name : formData.name}
                                 onChange={handleChange}
-                                placeholder="Enter your name"
+                                placeholder="Enter your email"
                                 required
                                 className="mt-1 block w-full rounded-md p-1"
                             />
@@ -137,7 +150,7 @@ const Signup = ({onLogin}) => {
                                     >
                                         <option value="">Select Category</option>
                                         <option className="p-1" value="sports">Sports</option>
-                                        <option className="p-1" value="arts">Arts</option>    
+                                        <option className="p-1" value="arts">Arts</option>
                                         <option value="history">History</option>
                                         <option value="physics">Physics</option>
                                     </select>

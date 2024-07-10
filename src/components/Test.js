@@ -226,8 +226,8 @@ const Test = ({ handleLogout }) => {
                 />
             </div>
 
-            <footer className="bg-gray-200 text-dark p-4 mt-auto">
-                <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <footer className="bg-gray-200 text-dark p-1 mt-auto">
+                <div className="container p-4 mx-auto flex flex-col md:flex-row justify-between items-center">
                     <div className="logo my-2">
                         <img src={logo} alt="Logo" className="h-8 md:h-10" />
                     </div>
@@ -237,10 +237,11 @@ const Test = ({ handleLogout }) => {
                         <FaInstagram className="text-2xl text-gray-600" />
                         <FaYoutube className="text-2xl text-gray-600" />
                     </div>
-                    <div className="text-xs my-2">
+                    
+                </div>
+                <div className="text-xs mt-auto text-center">
                         <p>&copy; 2024 Online Test Application. All rights reserved.</p>
                     </div>
-                </div>
             </footer>
         </div>
     );
